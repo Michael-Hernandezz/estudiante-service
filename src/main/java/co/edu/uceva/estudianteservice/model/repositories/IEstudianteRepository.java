@@ -10,4 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 //Debe especificarse la entidad y el tipo de Dato primario, es decir, Long por Id
 public interface IEstudianteRepository extends CrudRepository<Estudiante, Long> {
 
+    Estudiante findByApellido(String apellido);
+
+    Estudiante findByEmail(String email);
 }
