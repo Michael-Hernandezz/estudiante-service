@@ -6,10 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/Estudiante-service")
@@ -18,43 +21,32 @@ public class EstudianteRestController {
 
     private IEstudianteService estudianteService;
 
-    @Autowired
+    private static final String MENSAJE = "mensaje";
+    private static final String Estudiante = "Estudiante";
+    private static final String Estudiantes = "Estudiantes";
+
     public EstudianteRestController(IEstudianteService estudianteService) {
         this.estudianteService = estudianteService;
     }
 
     @GetMapping("/Estudiantes")
-    public List<Estudiante> getEstudiantes() {
-        return estudianteService.findAll();
+    public ResponseEntity<Map<String, Object>> getEstudiantes(){
+        List<Estudiante> estudiantes = estudianteService.findAll();
+        Map<String, Object> respuesta = new HashMap<>();
+        respuesta.put(Estudiante, estudiantes);
+        return ResponseEntity.ok(respuesta);
     }
 
     @PostMapping("/Estudiantes")
-    public Estudiante save(@RequestBody Estudiante estudiante) {
-        return estudianteService.save(estudiante);
+    public ResponseEntity<Map<String, Object>> save(@RequestBody Estudiante estudiante){
+        Map<String, Object> respuesta = new HashMap<>();
+        Estudiante nuevoEstudiante = estudianteService.save(estudiante);
+        respuesta.put(MENSAJE, "El estudiante ha sido creado con exito");
+        respuesta.put(Estudiante, nuevoEstudiante);
+        return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
     }
 
-    @DeleteMapping("/Estudiantes")
-    public void delete(@RequestBody Estudiante estudiante) {
-        estudianteService.delete(estudiante);
-    }
 
-    @PutMapping("/Estudiantes")
-    public Estudiante update(@RequestBody Estudiante estudiante) {
-        return estudianteService.update(estudiante);
-    }
-
-    @GetMapping("/Estudiantes/{id}")
-    public Estudiante findById(@PathVariable("id") Long id) {
-        return estudianteService.findById(id);
-    }
-    @GetMapping("/Estudiantes/{apellido}")
-    public Estudiante findByApellido(@PathVariable("apellido") String apellido) {
-        return estudianteService.findByApellido(apellido);
-    }
-    @GetMapping("/Estudiantes/{email}")
-    public Estudiante findByEmail(@PathVariable("email") String email) {
-        return estudianteService.findByEmail(email);
-    }
 
     @GetMapping("/Estudiante/page/{page}")
     public ResponseEntity<Object> index(@PathVariable Integer page) {
