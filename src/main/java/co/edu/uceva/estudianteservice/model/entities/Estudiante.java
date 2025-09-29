@@ -14,7 +14,7 @@ import lombok.Setter;
 
 public class Estudiante {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String apellido;
