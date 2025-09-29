@@ -3,6 +3,10 @@ package co.edu.uceva.estudianteservice.controllers;
 import co.edu.uceva.estudianteservice.model.entities.Estudiante;
 import co.edu.uceva.estudianteservice.model.services.IEstudianteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -51,6 +55,15 @@ public class EstudianteRestController {
     public Estudiante findByEmail(@PathVariable("email") String email) {
         return estudianteService.findByEmail(email);
     }
+
+    @GetMapping("/Estudiante/page/{page}")
+    public ResponseEntity<Object> index(@PathVariable Integer page) {
+        Pageable pageable = PageRequest.of(page, 4);
+        Page<Estudiante> estudiantes = estudianteService.findAll(pageable);
+        return ResponseEntity.ok(estudiantes);
+    }
+
+
 
 
 

@@ -1,6 +1,9 @@
 package co.edu.uceva.estudianteservice.model.services;
 
 import co.edu.uceva.estudianteservice.model.entities.Estudiante;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 /**
@@ -16,4 +19,5 @@ public interface IEstudianteService {
     Estudiante findByEmail(String email);
     Estudiante update(Estudiante estudiante);
     List<Estudiante> findAll();
+    Page<Estudiante> findAll(Pageable pageable);
 }

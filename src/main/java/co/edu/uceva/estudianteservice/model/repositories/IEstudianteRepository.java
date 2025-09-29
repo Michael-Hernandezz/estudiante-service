@@ -1,6 +1,7 @@
 package co.edu.uceva.estudianteservice.model.repositories;
 
 import co.edu.uceva.estudianteservice.model.entities.Estudiante;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -8,9 +9,5 @@ import org.springframework.data.repository.CrudRepository;
  * operaciones de CRUD sobre la entidad Producto
  */
 //Debe especificarse la entidad y el tipo de Dato primario, es decir, Long por Id
-public interface IEstudianteRepository extends CrudRepository<Estudiante, Long> {
-
-    Estudiante findByApellido(String apellido);
-
-    Estudiante findByEmail(String email);
+public interface IEstudianteRepository extends JpaRepository<Estudiante, Long> {
 }
