@@ -2,11 +2,13 @@ package co.edu.uceva.estudianteservice.controllers;
 
 import co.edu.uceva.estudianteservice.model.entities.Estudiante;
 import co.edu.uceva.estudianteservice.model.services.IEstudianteService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -37,14 +39,19 @@ public class EstudianteRestController {
     }
 
     @PostMapping("/Estudiantes")
-    public ResponseEntity<Map<String, Object>> save(@RequestBody Estudiante estudiante){
+    public ResponseEntity<Map<String, Object>> save(@Valid @RequestBody Estudiante estudiante, BindingResult result){
+        if (result.hasErrors()){
+            Map<String, Object> respuesta = new HashMap<>();
+            respuesta.put("error", "error de validacion");
+            respuesta.put("errores", result.getFieldErrors());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(respuesta);
+        }
         Map<String, Object> respuesta = new HashMap<>();
         Estudiante nuevoEstudiante = estudianteService.save(estudiante);
         respuesta.put(MENSAJE, "El estudiante ha sido creado con exito");
         respuesta.put(Estudiante, nuevoEstudiante);
         return ResponseEntity.status(HttpStatus.CREATED).body(respuesta);
     }
-
 
 
     @GetMapping("/Estudiante/page/{page}")
