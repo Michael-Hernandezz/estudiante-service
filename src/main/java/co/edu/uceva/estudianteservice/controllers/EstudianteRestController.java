@@ -2,7 +2,6 @@ package co.edu.uceva.estudianteservice.controllers;
 
 import co.edu.uceva.estudianteservice.model.entities.Estudiante;
 import co.edu.uceva.estudianteservice.model.services.IEstudianteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +32,7 @@ public class EstudianteRestController {
     public ResponseEntity<Map<String, Object>> getEstudiantes(){
         List<Estudiante> estudiantes = estudianteService.findAll();
         Map<String, Object> respuesta = new HashMap<>();
-        respuesta.put(Estudiante, estudiantes);
+        respuesta.put(Estudiantes, estudiantes);
         return ResponseEntity.ok(respuesta);
     }
 
