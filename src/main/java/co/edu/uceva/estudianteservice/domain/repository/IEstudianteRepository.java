@@ -1,8 +1,7 @@
-package co.edu.uceva.estudianteservice.model.repositories;
+package co.edu.uceva.estudianteservice.domain.repository;
 
-import co.edu.uceva.estudianteservice.model.entities.Estudiante;
+import co.edu.uceva.estudianteservice.domain.model.Estudiante;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 /**
  * Interface que hereda de CrudRepository para realizar las

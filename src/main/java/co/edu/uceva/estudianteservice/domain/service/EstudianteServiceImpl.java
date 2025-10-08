@@ -1,7 +1,7 @@
-package co.edu.uceva.estudianteservice.model.services;
+package co.edu.uceva.estudianteservice.domain.service;
 
-import co.edu.uceva.estudianteservice.model.entities.Estudiante;
-import co.edu.uceva.estudianteservice.model.repositories.IEstudianteRepository;
+import co.edu.uceva.estudianteservice.domain.model.Estudiante;
+import co.edu.uceva.estudianteservice.domain.repository.IEstudianteRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package co.edu.uceva.estudianteservice.controllers;
+package co.edu.uceva.estudianteservice.delivery.rest;
 
-import co.edu.uceva.estudianteservice.model.entities.Estudiante;
-import co.edu.uceva.estudianteservice.model.services.IEstudianteService;
+import co.edu.uceva.estudianteservice.domain.model.Estudiante;
+import co.edu.uceva.estudianteservice.domain.service.IEstudianteService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
