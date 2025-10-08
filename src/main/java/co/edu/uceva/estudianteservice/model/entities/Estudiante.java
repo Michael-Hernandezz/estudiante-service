@@ -21,12 +21,18 @@ public class Estudiante {
     @Column(nullable=false)
     private String nombre;
 
-  /*  @NotEmpty(message ="No puede estar vacio")
+    @NotEmpty(message ="No puede estar vacio")
     @Size(min=2, max=20, message="El tamaño tiene que estar entre 2 y 20")
-    @Column(nullable=false)*/
+    @Column(nullable=false)
     private String apellido;
 
-
+    @NotEmpty(message ="No puede estar vacio")
+    @Size(min=2, max=20, message="El tamaño tiene que estar entre 2 y 20")
+    @Column(nullable=false)
     private String email;
+
+    @NotEmpty(message ="No puede estar vacio")
+    @Size(min=10, max=14, message="Ingrese correctamente el numero de telefono")
+    @Column(nullable=false)
     private String telefono;
 }
