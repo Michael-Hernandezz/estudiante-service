@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Clase que implementa los métodos de la interfaz IEstudianteService
@@ -45,8 +46,8 @@ public class EstudianteServiceImpl implements IEstudianteService {
 
     @Override
     @Transactional(readOnly = true)
-    public Estudiante findById(Long id) {
-        return estudianteRepository.findById(id).orElse(null);
+    public Optional<Estudiante> findById(Long id) {
+        return estudianteRepository.findById(id);
     }
 
     @Override
